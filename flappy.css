@@ -79,24 +79,41 @@ body {
   justify-content: center;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Prevents scrolling while loader is active */
 }
+
 #loader {
+  position: relative;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #loaderBird {
+  position: absolute;
   width: 80px;
   height: auto;
-  animation: bounce 0.8s infinite ease-in-out;
-} /* Bouncing animation to mimic flapping motion */
-@keyframes bounce {
-  0%,
+  animation: flyAcross 2s linear infinite, flap 0.5s ease-in-out infinite;
+}
+
+/* Fly across screen from left to right */
+@keyframes flyAcross {
+  0% {
+    left: -100px; /* Start slightly off-screen to the left */
+  }
   100% {
+    left: 100vw; /* End off-screen to the right */
+  }
+}
+
+/* Flapping animation */
+@keyframes flap {
+  0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-15px);
   }
 }
 #startButton {
